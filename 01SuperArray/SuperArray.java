@@ -23,7 +23,7 @@ public class SuperArray {
     
     public void add(Object e) {
 	if (size == superray.length)
-	    resize(size+1);
+	    resize(size*2);
 	superray[size] = e;
 	size += 1;
     }
@@ -31,7 +31,7 @@ public class SuperArray {
     public void add(int index, Object e) {
 	if (inRange(index)) {
 	    if (size == superray.length)
-		resize(size+1);
+		resize(size*2);
 	    for (int i = index+1; i < superray.length; i++) {
 		superray[i] = superray[i-1];
 	    }
@@ -50,6 +50,8 @@ public class SuperArray {
 	    }
 	    superray[size-1] = null;
 	    size -= 1;
+	    if (size <= superray.length/4)
+		resize(size);
 	    return ret;
 	} else {
 	    System.err.println("index out of range: " + index);
