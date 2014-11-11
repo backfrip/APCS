@@ -33,7 +33,11 @@ public class Test {
 	sop(superray);
 	sop(superray.get(0));
 	sop();
-	sop(superray.get(1));
+	try {
+	    sop(superray.get(1));
+	} catch (IndexOutOfBoundsException e) {
+	    sop(e);
+	}
 	sop();
 
 	superray.add(0, "Foogal");
@@ -43,14 +47,22 @@ public class Test {
 	sop(superray.remove(0));
 	sop(superray);
 	sop();
-	sop(superray.remove(1));
+	try {
+	    sop(superray.remove(1));
+	} catch (IndexOutOfBoundsException e) {
+	    sop(e);
+	}
 	sop(superray);
 	sop();
 
 	sop(superray.set(0, "Bob"));
 	sop(superray);
 	sop();
-	sop(superray.set(1, "Lucy"));
+	try {
+	    sop(superray.set(1, "Lucy"));
+	} catch (IndexOutOfBoundsException e) {
+	    sop(e);
+	}
 	sop(superray);
 	sop();
 	

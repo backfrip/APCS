@@ -38,7 +38,7 @@ public class SuperArray {
 	    set(index, e);
 	    size += 1;
 	} else {
-	    System.err.println("index out of range: " + index);
+	    throw new IndexOutOfBoundsException("invalid add index");
 	}
     }
 
@@ -54,8 +54,7 @@ public class SuperArray {
 		resize(size);
 	    return ret;
 	} else {
-	    System.err.println("index out of range: " + index);
-	    return null;
+	    throw new IndexOutOfBoundsException("invalid remove index"); 
 	}
     }
 
@@ -87,8 +86,7 @@ public class SuperArray {
     public Object get(int index) {
 	if (inRange(index))
 	    return superray[index];
-	System.err.println("index out of range: " + index);
-	return null;
+        throw new IndexOutOfBoundsException("invalid get index");
     }
 
     public Object set(int index, Object e) {
@@ -96,8 +94,7 @@ public class SuperArray {
 	    superray[index] = e;
 	    return e;
 	} else {
-	    System.err.println("index out of range: " + index);
-	    return null;
+	    throw new IndexOutOfBoundsException("invalid set index");
 	}
     }
 
