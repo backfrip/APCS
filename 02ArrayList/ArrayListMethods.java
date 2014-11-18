@@ -21,7 +21,7 @@ public class ArrayListMethods {
 			L.add(L.remove(randy.nextInt(i+1)));
 		}
 	}
-
+	
 	public static void main(String[]args) {
 
 		ArrayList<Integer> L = new ArrayList<Integer>();
