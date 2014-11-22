@@ -14,14 +14,14 @@ public class ArrayListMethods {
 	/*
 		Turns out, doesn't really save on memory (due to individual
 		command memory usage and whatnot)
-	*/
+	 */
 	public static void randomize(ArrayList<Integer> L) {
 		Random randy = new Random();
 		for (int i = L.size()-1; i >= 0; i--) {
 			L.add(L.remove(randy.nextInt(i+1)));
 		}
 	}
-	
+
 	public static void main(String[]args) {
 
 		ArrayList<Integer> L = new ArrayList<Integer>();
