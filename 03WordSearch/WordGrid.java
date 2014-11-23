@@ -17,7 +17,12 @@ public class WordGrid {
      */
     public WordGrid(int rows, int cols) throws IOException {
 	data = new char[rows][cols];
-	getWords();
+	try {
+	    getWords();
+	} catch (IOException e) {
+	    System.err.println("No \"words.txt\" found in this directory");
+	    throw e;
+	}
 	clear();
     }
 
