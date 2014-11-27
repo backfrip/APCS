@@ -51,12 +51,28 @@ public class WordGrid {
     }
 
     /**
-     * Also nothing to C here
+     * Reads random words from file <filename> and adds them to the WordGrid.
+     * 
+     * @param fileName
+     *            the name of the file to read words from
+     * @param fillRandomLetters
+     *            if true, replaces any spaces with random letters after the
+     *            words have been added
      */
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters) {
 	// Nothing to C here!
     }
-    
+
+    /**
+     * Returns a formatted list of words added to the WordGrid.
+     * 
+     * @return a formatted list of words
+     */
+    public String wordsInPuzzle() {
+	// Nothing to C here
+	return null;
+    }
+
     /**
      * Attempts to add a given word to the specified position of the WordGrid
      * horizontally. The word is added from left to right, must fit on the
