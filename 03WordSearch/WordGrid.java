@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
 public class WordGrid {
     private char[][] data;
@@ -15,26 +15,25 @@ public class WordGrid {
      * @param col
      *            the starting width of the WordGrid
      */
-    public WordGrid(int rows, int cols) throws IOException {
+    public WordGrid(int rows, int cols) {
 	data = new char[rows][cols];
+	clear();
+
 	try {
 	    getWords();
-	} catch (IOException e) {
+	} catch (FileNotFoundException e) {
 	    System.err.println("No \"words.txt\" found in this directory");
-	    throw e;
+	    System.exit(0);
 	}
-	clear();
     }
 
-    /** Fill the words ArrayList with the words in "words<!-- -->.txt". */
-    private void getWords() throws IOException {
+    private void getWords() throws FileNotFoundException {
 	Scanner in = new Scanner(new File("words.txt"));
 	while (in.hasNext()) {
 	    words.add(in.nextLine());
 	}
     }
 
-    /** Set all values in the WordGrid to spaces ' ' */
     private void clear() {
 	for (int i = 0; i < data.length; i++) {
 	    for (int j = 0; j < data[i].length; j++) {
