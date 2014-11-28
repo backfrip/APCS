@@ -64,6 +64,16 @@ public class WordGrid {
     }
 
     /**
+     * Attempts to add an ArrayList of words to the WordGrid.
+     * 
+     * @param allWords
+     *            the ArrayList of words to be added
+     */
+    void addManyWordsToList(ArrayList<String> allWords) {
+	// Nothing 2 C
+    }
+
+    /**
      * Returns a formatted list of words added to the WordGrid.
      * 
      * @return a formatted list of words
@@ -71,6 +81,52 @@ public class WordGrid {
     public String wordsInPuzzle() {
 	// Nothing to C here
 	return null;
+    }
+
+    /**
+     * Changes the seed of the WordGrid's Random object
+     */
+    public void setSeed(long seed) {
+	// Nothing to C here yet
+    }
+
+    /**
+     * Attempts to add a given word to the specified position of the WordGrid.
+     * 
+     * @param word
+     *            the word to be added to the WordGrid
+     * @param row
+     *            the vertical start location
+     * @param col
+     *            the horizontal start location
+     * @param xdir
+     *            the direction in which to increment horizontally (-1, 0, or 1)
+     * @param ydir
+     *            the direction in which to increment vertically (-1, 0, or 1)
+     */
+    public boolean addWord(String word, int row, int col, int xdir, int ydir) {
+	if (!((xdir != 0 || ydir != 0) && xdir <= 1 && xdir >= -1 && ydir <= 1 && ydir >= -1)) {
+	    System.out.println("check1");
+	    return false;
+	}
+	if (!(col + (word.length() * xdir) <= data[0].length
+		&& col + 1 + (word.length() * xdir) >= 0
+		&& row - (word.length() * ydir) <= data.length && row + 1
+		- (word.length() * ydir) >= 0)) {
+	    System.out.println("check2");
+	    return false;
+	}
+	for (int i = 0; i < word.length(); i++) {
+	    if (data[row - (i * ydir)][col + (i * xdir)] != word.charAt(i)
+		    && data[row - (i * ydir)][col + (i * xdir)] != ' ') {
+		System.out.println("check3");
+		return false;
+	    }
+	}
+	for (int i = 0; i < word.length(); i++) {
+	    data[row - (i * ydir)][col + (i * xdir)] = word.charAt(i);
+	}
+	return true;
     }
 
     /**
