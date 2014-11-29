@@ -9,7 +9,7 @@ public class Driver {
 	// int answers = args[3];
 	
 	WordGrid test = new WordGrid(40, 40);
-	test.loadWordsFromFile("words.txt", false);
+	test.loadWordsFromFile("words.txt", true);
 	
 	System.out.println(test);
 	System.out.println(test.wordsInPuzzle());

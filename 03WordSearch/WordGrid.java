@@ -26,7 +26,7 @@ public class WordGrid {
     /** Sets all values in the WordGrid to periods '.' */
     private void clear() {
 	for (int i = 0; i < data.length; i++) {
-	    for (int j = 0; j < data[i].length; j++) {
+	    for (int j = 0; j < data[0].length; j++) {
 		data[i][j] = '.';
 	    }
 	}
@@ -68,6 +68,14 @@ public class WordGrid {
 	}
 	in.close();
 	addManyWordsToList(words);
+	if (fillRandomLetters) {
+	    for (int i = 0; i < data.length; i++) {
+		for (int j = 0; j < data[0].length; j++) {
+		    if (data[i][j] == '.')
+			data[i][j] = (char)('a' + rand.nextInt(26));
+		}
+	    }
+	}
     }
 
     /**
@@ -83,7 +91,7 @@ public class WordGrid {
 	for (String word : allWords) {
 	    r = true;
 	    for (int i = tries; i >= 0 && r; i--) {
-		if (addWord(word, rand.nextInt(data.length),
+		if (addWord(word.toLowerCase(), rand.nextInt(data.length),
 			rand.nextInt(data[0].length), rand.nextInt(3) - 1,
 			rand.nextInt(3) - 1)) {
 		    r = false;
