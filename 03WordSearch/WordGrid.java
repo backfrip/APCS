@@ -11,7 +11,7 @@ public class WordGrid {
     private Random rand = new Random();
 
     /**
-     * Initialize the grid to the size specified and fill it with words.
+     * Initialize the grid to the size specified.
      *
      * @param rows
      *            the starting height of the WordGrid
@@ -23,11 +23,11 @@ public class WordGrid {
 	clear();
     }
 
-    /** Sets all values in the WordGrid to spaces ' ' */
+    /** Sets all values in the WordGrid to periods '.' */
     private void clear() {
 	for (int i = 0; i < data.length; i++) {
 	    for (int j = 0; j < data[i].length; j++) {
-		data[i][j] = ' ';
+		data[i][j] = '.';
 	    }
 	}
     }
@@ -43,7 +43,7 @@ public class WordGrid {
 	String ret = "";
 	for (char[] dat : data) {
 	    for (char da : dat) {
-		ret += da;
+		ret += da + " ";
 	    }
 	    ret += '\n';
 	}
@@ -56,11 +56,18 @@ public class WordGrid {
      * @param fileName
      *            the name of the file to read words from
      * @param fillRandomLetters
-     *            if true, replaces any spaces with random letters after the
+     *            if true, replaces any pluses with random letters after the
      *            words have been added
      */
-    public void loadWordsFromFile(String fileName, boolean fillRandomLetters) {
-	// Nothing to C here!
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters)
+	    throws FileNotFoundException {
+	Scanner in = new Scanner(new File(fileName));
+	words.clear();
+	while (in.hasNext()) {
+	    words.add(in.nextLine());
+	}
+	in.close();
+	addManyWordsToList(words);
     }
 
     /**
@@ -69,8 +76,21 @@ public class WordGrid {
      * @param allWords
      *            the ArrayList of words to be added
      */
-    void addManyWordsToList(ArrayList<String> allWords) {
-	// Nothing 2 C
+    private void addManyWordsToList(ArrayList<String> allWords) {
+	int tries = 100;
+	boolean r;
+	added.clear();
+	for (String word : allWords) {
+	    r = true;
+	    for (int i = tries; i >= 0 && r; i--) {
+		if (addWord(word, rand.nextInt(data.length),
+			rand.nextInt(data[0].length), rand.nextInt(3) - 1,
+			rand.nextInt(3) - 1)) {
+		    r = false;
+		    added.add(word);
+		}
+	    }
+	}
     }
 
     /**
@@ -79,8 +99,7 @@ public class WordGrid {
      * @return a formatted list of words
      */
     public String wordsInPuzzle() {
-	// Nothing to C here
-	return null;
+	return added.toString();
     }
 
     /**
@@ -106,20 +125,17 @@ public class WordGrid {
      */
     public boolean addWord(String word, int row, int col, int xdir, int ydir) {
 	if (!((xdir != 0 || ydir != 0) && xdir <= 1 && xdir >= -1 && ydir <= 1 && ydir >= -1)) {
-	    System.out.println("check1");
 	    return false;
 	}
 	if (!(col + (word.length() * xdir) <= data[0].length
 		&& col + 1 + (word.length() * xdir) >= 0
 		&& row - (word.length() * ydir) <= data.length && row + 1
 		- (word.length() * ydir) >= 0)) {
-	    System.out.println("check2");
 	    return false;
 	}
 	for (int i = 0; i < word.length(); i++) {
 	    if (data[row - (i * ydir)][col + (i * xdir)] != word.charAt(i)
-		    && data[row - (i * ydir)][col + (i * xdir)] != ' ') {
-		System.out.println("check3");
+		    && data[row - (i * ydir)][col + (i * xdir)] != '.') {
 		return false;
 	    }
 	}
@@ -149,7 +165,7 @@ public class WordGrid {
     public boolean addWordHorizontal(String word, int row, int col) {
 	if (data[row].length - col >= word.length()) {
 	    for (int c = 0; c < word.length(); c++) {
-		if (data[row][c + col] != ' '
+		if (data[row][c + col] != '.'
 			&& data[row][c + col] != word.charAt(c)) {
 		    return false;
 		}
@@ -182,7 +198,7 @@ public class WordGrid {
     public boolean addWordVertical(String word, int row, int col) {
 	if (data.length - row >= word.length()) {
 	    for (int r = 0; r < word.length(); r++) {
-		if (data[row + r][col] != ' '
+		if (data[row + r][col] != '.'
 			&& data[row + r][col] != word.charAt(r)) {
 		    return false;
 		}
@@ -216,7 +232,7 @@ public class WordGrid {
 	if (data.length - row >= word.length()
 		&& data[row].length - col >= word.length()) {
 	    for (int y = 0; y < word.length(); y++) {
-		if (data[row + y][col + y] != ' '
+		if (data[row + y][col + y] != '.'
 			&& data[row + y][col + y] != word.charAt(y)) {
 		    return false;
 		}
