@@ -114,7 +114,7 @@ public class WordGrid {
      * Changes the seed of the WordGrid's Random object
      */
     public void setSeed(long seed) {
-	// Nothing to C here yet
+	rand = new Random(seed);
     }
 
     /**
