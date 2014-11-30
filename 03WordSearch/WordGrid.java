@@ -86,10 +86,13 @@ public class WordGrid {
      */
     private void addManyWordsToList(ArrayList<String> allWords) {
 	int tries = 100;
+	words = allWords;
+	String word;
 	boolean r;
 	added.clear();
 	clear();
-	for (String word : allWords) {
+	while (words.size() > 0) {
+	    word = words.remove(rand.nextInt(words.size()));
 	    r = true;
 	    for (int i = tries; i >= 0 && r; i--) {
 		if (addWord(word.toLowerCase(), rand.nextInt(data.length),

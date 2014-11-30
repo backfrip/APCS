@@ -7,12 +7,13 @@ public class Driver {
 	// int cols = args[1];
 	// long randomSeed = args[2];
 	// int answers = args[3];
-	
+
 	WordGrid test = new WordGrid(40, 40);
-	test.setSeed(12);
+	test.setSeed(14);
 	test.loadWordsFromFile("words.txt", false);
 	
 	System.out.println(test);
 	System.out.println(test.wordsInPuzzle());
+
     }
 }
