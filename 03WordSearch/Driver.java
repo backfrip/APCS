@@ -22,7 +22,7 @@ public class Driver {
 		answers = Integer.parseInt(args[3]);
 	} catch (Exception e) {
 	    System.out.println("Proper syntax:");
-	    System.out.println("java Driver rows cols [randomSeed [answers]]");
+	    System.out.println("java Driver <rows> <cols> [<randomSeed> [<answers>]]");
 	    System.exit(0);
 	}
 
