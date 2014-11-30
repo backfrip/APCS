@@ -56,7 +56,7 @@ public class WordGrid {
      * @param fileName
      *            the name of the file to read words from
      * @param fillRandomLetters
-     *            if true, replaces any pluses with random letters after the
+     *            if true, replaces any periods with random letters after the
      *            words have been added
      */
     public void loadWordsFromFile(String fileName, boolean fillRandomLetters)
@@ -72,7 +72,7 @@ public class WordGrid {
 	    for (int i = 0; i < data.length; i++) {
 		for (int j = 0; j < data[0].length; j++) {
 		    if (data[i][j] == '.')
-			data[i][j] = (char)('a' + rand.nextInt(26));
+			data[i][j] = (char) ('a' + rand.nextInt(26));
 		}
 	    }
 	}
@@ -88,6 +88,7 @@ public class WordGrid {
 	int tries = 100;
 	boolean r;
 	added.clear();
+	clear();
 	for (String word : allWords) {
 	    r = true;
 	    for (int i = tries; i >= 0 && r; i--) {
@@ -102,16 +103,29 @@ public class WordGrid {
     }
 
     /**
-     * Returns a formatted list of words added to the WordGrid.
+     * Returns a formatted list of words added to the WordGrid. As of right now,
+     * doesn't handle words longer than 20 letters well.
      * 
      * @return a formatted list of words
      */
     public String wordsInPuzzle() {
-	return added.toString();
+	String ret = "";
+	for (int i = 0; i < added.size(); i++) {
+	    for (int l = 20 - added.get(i).length(); l > 0; l--) {
+		ret += " ";
+	    }
+	    ret += added.get(i);
+	    if (i % 4 == 3)
+		ret += "\n";
+	}
+	return ret;
     }
 
     /**
-     * Changes the seed of the WordGrid's Random object
+     * Changes the seed of the WordGrid's Random object.
+     * 
+     * @param seed
+     *            the new seed for the Random object
      */
     public void setSeed(long seed) {
 	rand = new Random(seed);
@@ -131,7 +145,7 @@ public class WordGrid {
      * @param ydir
      *            the direction in which to increment vertically (-1, 0, or 1)
      */
-    public boolean addWord(String word, int row, int col, int xdir, int ydir) {
+    private boolean addWord(String word, int row, int col, int xdir, int ydir) {
 	if (!((xdir != 0 || ydir != 0) && xdir <= 1 && xdir >= -1 && ydir <= 1 && ydir >= -1)) {
 	    return false;
 	}
