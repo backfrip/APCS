@@ -1,4 +1,4 @@
-public class SuperArray<T> {
+public class SuperArray<T extends Comparable<T>> {
     private Object[] superray;
     private int size = 0;
 
@@ -96,5 +96,19 @@ public class SuperArray<T> {
 
     private boolean inRange(int index) {
 	return !(index < 0 || index >= size);
+    }
+
+    public void insertionSort() {
+	if (superray.length > 1) {
+	    T temp;
+	    for (int i = 1; i < superray.length; i++) {
+		if (superray[i].compareTo(superray[i-1]) > 0) {
+		    temp = superray[i];
+		    for (int j = i; i > 0; i--) {
+			
+		    }
+		}
+	    }
+	}
     }
 }

@@ -1,5 +1,5 @@
-public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T> {
-
+public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T extends Comparable<T>> {
+    
     public OrderedSuperArray() {
 	super();
     }
@@ -16,18 +16,14 @@ public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T> {
 
     @Override
     public void add(T e) {
-	if (size() == 0) {
+	int i = 0;
+	while (i < size() && e.compareTo(get(i)) > 0) {
+	    i++;
+	}
+	if (i == size()) {
 	    super.add(e);
 	} else {
-	    int i = 0;
-	    while (i < size() && e.compareTo(get(i)) > 0) {
-		i++;
-	    }
-	    if (i == size()) {
-		super.add(e);
-	    } else {
-		super.add(i, e);
-	    }
+	    super.add(i, e);
 	}
     }
 

@@ -4,25 +4,30 @@ public class Test {
 	System.out.println(o);
     }
     public static void main(String[] args) {
-	OrderedSuperArray<String> osa = new OrderedSuperArray<>();
-	osa.add("hello");
-	sop(osa);
-	osa.add("jello");
-	sop(osa);
-	osa.add("interrogate");
-	sop(osa);
-	osa.add("abacus");
-	sop(osa);
-	osa.add("cancer");
-	sop(osa);
+	/*
+	  OrderedSuperArray<String> osa = new OrderedSuperArray<String>();
+	  osa.add("hello");
+	  sop(osa);
+	  osa.add("jello");
+	  sop(osa);
+	  osa.add("interrogate");
+	  sop(osa);
+	  osa.add("abacus");
+	  sop(osa);
+	  osa.add("cancer");
+	  sop(osa);
 	
-	OrderedSuperArray<Integer> osai = new OrderedSuperArray<>();
-	osai.add(new Integer(3));
-	osai.add(new Integer(7));
-	osai.add(new Integer(1));
-	osai.add(new Integer(3));
-	sop(osai);
+	  OrderedSuperArray<Integer> osai = new OrderedSuperArray<Integer>();
+	  osai.add(new Integer(3));
+	  osai.add(new Integer(7));
+	  osai.add(new Integer(1));
+	  osai.add(new Integer(3));
+	  sop(osai);
+
+	  //osai.add("ERROR");
+	  */
+	
 	
     }
-
+    
 }
