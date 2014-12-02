@@ -1,4 +1,4 @@
-public class OrderedSuperArray extends SuperArray {
+public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T> {
 
     public OrderedSuperArray() {
 	super();
@@ -8,21 +8,27 @@ public class OrderedSuperArray extends SuperArray {
 	super(cap);
     }
 
-    /**
-     * @deprecated
-     * Index determined by class
-     */
     @Deprecated
     @Override
-    public void add(int index, String e) {
-	add(String e);
+    public void add(int index, T e) {
+	add(e);
     }
 
     @Override
-    public void add(String e) {
+    public void add(T e) {
 	if (size() == 0) {
 	    super.add(e);
 	} else {
-	    
-	super.add(x, e);
+	    int i = 0;
+	    while (i < size() && e.compareTo(get(i)) > 0) {
+		i++;
+	    }
+	    if (i == size()) {
+		super.add(e);
+	    } else {
+		super.add(i, e);
+	    }
+	}
     }
+
+}
