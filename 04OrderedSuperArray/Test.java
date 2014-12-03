@@ -27,6 +27,17 @@ public class Test {
 	  //osai.add("ERROR");
 	  */
 	
+	SuperArray<String> sa = new SuperArray<String>();
+	sa.add("alpha");
+	sa.add("charlie");
+	sa.add("delta");
+	sa.add("bravo");
+	sa.add("echo");
+	sa.add("foxtrot");
+	sop(sa);
+	sa.insertionSort();
+	sop(sa);
+	
 	
     }
     

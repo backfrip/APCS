@@ -98,17 +98,31 @@ public class SuperArray<T extends Comparable<T>> {
 	return !(index < 0 || index >= size);
     }
 
+    @SuppressWarnings("unchecked")
     public void insertionSort() {
 	if (superray.length > 1) {
-	    T temp;
-	    for (int i = 1; i < superray.length; i++) {
-		if (superray[i].compareTo(superray[i-1]) > 0) {
+	    Object temp;
+	    int index;
+	    boolean exit;
+	    for (int i = 1; i < size(); i++) {
+		System.out.println("Iteration: " + i);
+		if (((T)superray[i]).compareTo(((T)superray[i-1])) < 0) {
 		    temp = superray[i];
-		    for (int j = i; i > 0; i--) {
-			
+		    exit = false;
+		    for (index = i-1; index >= 0 && !exit; index--) {
+			System.out.println("internal_index: " + index);
+			if (((T)superray[index]).compareTo(((T)temp)) <= 0) {
+			    exit = true;
+			    index+=2;
+			}
 		    }
+		    for (int c = i; c > index; c--) {
+			superray[c] = superray[c-1];
+		    }
+		    superray[index] = temp;
 		}
 	    }
 	}
-    }
+    }		
+		 
 }
