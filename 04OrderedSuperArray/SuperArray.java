@@ -105,12 +105,10 @@ public class SuperArray<T extends Comparable<T>> {
 	    int index;
 	    boolean exit;
 	    for (int i = 1; i < size(); i++) {
-		System.out.println("Iteration: " + i);
 		if (((T)superray[i]).compareTo(((T)superray[i-1])) < 0) {
 		    temp = superray[i];
 		    exit = false;
-		    for (index = i-1; index >= 0 && !exit; index--) {
-			System.out.println("internal_index: " + index);
+		    for (index = i-1; index > 0 && !exit; index--) {
 			if (((T)superray[index]).compareTo(((T)temp)) <= 0) {
 			    exit = true;
 			    index+=2;

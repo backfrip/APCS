@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Test {
     //because it takes too long to write :P
     public static void sop(Object o) {
@@ -26,7 +28,7 @@ public class Test {
 
 	  //osai.add("ERROR");
 	  */
-	
+	/*
 	SuperArray<String> sa = new SuperArray<String>();
 	sa.add("alpha");
 	sa.add("charlie");
@@ -37,7 +39,16 @@ public class Test {
 	sop(sa);
 	sa.insertionSort();
 	sop(sa);
+	*/
 	
+	Random randy = new Random(927);
+	SuperArray<Integer> sup = new SuperArray<Integer>();
+	for (int i = 0; i < 40000; i++) {
+	    sup.add(new Integer(randy.nextInt(41)));
+	}
+	//sop(sup);
+	sup.insertionSort();
+	//sop(sup);
 	
     }
     
