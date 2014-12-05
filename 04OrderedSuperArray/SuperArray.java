@@ -13,12 +13,10 @@ public class SuperArray<T extends Comparable<T>> {
     // adjusted to look like Arrays.toString()'s output
     public String toString() {
 	String ret = "[";
-	for (int i = 0; i < size; i++) {
-	    ret += superray[i];
-	    if (i != size-1)
-		ret += ", ";
+	for (int i = 0; i < size - 1; i++) {
+	    ret += superray[i] + ", ";
 	}
-	return ret + "]";
+	return ret + superray[size - 1] + "]";
     }
 
     public void add(T e) {
