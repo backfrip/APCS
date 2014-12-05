@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Arrays;
 
 public class Test {
     //because it takes too long to write :P
@@ -41,15 +42,23 @@ public class Test {
 	sop(sa);
 	*/
 	
-	Random randy = new Random(927);
+	int length = 10000;
+	Random randy = new Random();
 	SuperArray<Integer> sup = new SuperArray<Integer>();
-	for (int i = 0; i < 40000; i++) {
-	    sup.add(new Integer(randy.nextInt(41)));
+	Integer[]ia = new Integer[length];
+	Integer t;
+	for (int i = 0; i < length; i++) {
+	    t = new Integer(randy.nextInt(51));
+	    ia[i] = t;
+	    sup.add(t);
 	}
 	//sop(sup);
+	//sop(Arrays.toString(ia));
+	Arrays.sort(ia);
 	sup.insertionSort();
+	//sop(Arrays.toString(ia));
 	//sop(sup);
-	
+	sop(Arrays.toString(ia).equals(sup.toString()));
     }
     
 }

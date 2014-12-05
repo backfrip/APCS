@@ -10,10 +10,13 @@ public class SuperArray<T extends Comparable<T>> {
 	superray = new Object[cap];
     }
 
+    // adjusted to look like Arrays.toString()'s output
     public String toString() {
-	String ret = "[ ";
+	String ret = "[";
 	for (int i = 0; i < size; i++) {
-	    ret += superray[i] + " ";
+	    ret += superray[i];
+	    if (i != size-1)
+		ret += ", ";
 	}
 	return ret + "]";
     }
@@ -30,7 +33,7 @@ public class SuperArray<T extends Comparable<T>> {
 	    if (size == superray.length)
 		resize(size * 2);
 	    for (int i = size; i > index; i--) {
-		superray[i] = superray[i-1];
+		superray[i] = superray[i - 1];
 	    }
 	    set(index, e);
 	    size += 1;
@@ -101,26 +104,27 @@ public class SuperArray<T extends Comparable<T>> {
     @SuppressWarnings("unchecked")
     public void insertionSort() {
 	if (superray.length > 1) {
-	    Object temp;
+	    T temp;
 	    int index;
 	    boolean exit;
-	    for (int i = 1; i < size(); i++) {
-		if (((T)superray[i]).compareTo(((T)superray[i-1])) < 0) {
-		    temp = superray[i];
+	    for (int i = 1; i < size; i++) {
+		if (((T) superray[i]).compareTo(((T) superray[i - 1])) <= 0) {
+		    temp = (T) superray[i];
 		    exit = false;
-		    for (index = i-1; index > 0 && !exit; index--) {
-			if (((T)superray[index]).compareTo(((T)temp)) <= 0) {
+		    for (index = i - 1; !exit && index >= 0; index--) {
+			if (temp.compareTo(((T) superray[index])) >= 0) {
+			    index += 1;
 			    exit = true;
-			    index+=2;
 			}
 		    }
+		    index += 1;
 		    for (int c = i; c > index; c--) {
-			superray[c] = superray[c-1];
+			superray[c] = superray[c - 1];
 		    }
 		    superray[index] = temp;
 		}
 	    }
 	}
-    }		
-		 
+    }
+
 }
