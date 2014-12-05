@@ -125,4 +125,23 @@ public class SuperArray<T extends Comparable<T>> {
 	}
     }
 
+    @SuppressWarnings("unchecked")
+    public void selectionSort() {
+	if (superray.length > 1) {
+	    T min;
+	    int swapdex;
+	    for (int index = 0; index < size; index++) {
+		min = (T) superray[index];
+		swapdex = index;
+		for (int i = index; i < size; i++) {
+		    if (((T) superray[i]).compareTo(min) < 0) {
+			min = (T) superray[i];
+			swapdex = i;
+		    }
+		}
+		superray[swapdex] = superray[index];
+		superray[index] = min;
+	    }
+	}
+    }
 }

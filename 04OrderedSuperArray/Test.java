@@ -42,31 +42,41 @@ public class Test {
 	sop(sa);
 	*/
 	
-	int length = 100000;
+	int length = 500000;
 	sop(">> Sorting lists of length: " + length);
+
 	Random randy = new Random();
-	SuperArray<Integer> sup = new SuperArray<Integer>();
-	Integer[]ia = new Integer[length];
-	Integer t;
+	SuperArray<String> saa = new SuperArray<String>();
+	SuperArray<String> sab = new SuperArray<String>();
+	String[]ia = new String[length];
+	String t;
+
 	sop(">> Constructing lists...");
 	for (int i = 0; i < length; i++) {
-	    t = new Integer(randy.nextInt(51));
+	    t = (new Integer(randy.nextInt(51))).toString();
 	    ia[i] = t;
-	    sup.add(t);
+	    saa.add(t);
+	    sab.add(t);
 	}
-	//sop(sup);
-	//sop(Arrays.toString(ia));
+
 	sop(">> Sorting array...");
 	Arrays.sort(ia);
-	sop(">> Sorting SuperArray...");
-	sup.insertionSort();
 	//sop(Arrays.toString(ia));
-	//sop(sup);
-	sop(">> Result of .equals() test:");
-	sop(Arrays.toString(ia).equals(sup.toString()));
-	//sop(Arrays.toString(ia));
-	//sop("SuperArray toString()ing...");
-	//sop(sup.toString());
+
+	sop(">> Insertion sorting SuperArray...");
+	saa.insertionSort();
+	//sop(saa);
+
+	sop(">> Selection sorting SuperArray...");
+	sab.selectionSort();
+	//sop(sab);
+
+	sop(">> iS .equals()?");
+	sop(Arrays.toString(ia).equals(saa.toString()));
+	
+	sop(">> sS .equals()?");
+	sop(Arrays.toString(ia).equals(sab.toString()));
+
     }
     
 }
