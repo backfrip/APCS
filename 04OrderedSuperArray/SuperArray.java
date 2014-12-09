@@ -144,4 +144,20 @@ public class SuperArray<T extends Comparable<T>> {
 	    }
 	}
     }
+
+    @SuppressWarnings("unchecked")
+    public int find(T target) {
+	for (int i = 0; i < size(); i++) {
+	    if (((T)superray[i]).equals(target))
+		return i;
+	}
+	return -1;
+    }
+    
+    // Got sick of manually adding, needed something faster
+    public void add(T[] somearray) {
+	for (T something : somearray) {
+	    add(something);
+	}
+    }
 }

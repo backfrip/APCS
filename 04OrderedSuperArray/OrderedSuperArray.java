@@ -1,4 +1,4 @@
-public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T extends Comparable<T>> {
+public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T> {
     
     public OrderedSuperArray() {
 	super();
@@ -25,6 +25,22 @@ public class OrderedSuperArray<T extends Comparable<T>> extends SuperArray<T ext
 	} else {
 	    super.add(i, e);
 	}
+    }
+    
+    @Override
+    public int find(T target) {
+	double r = size();
+	int i = size()/2;
+	while (r != 0) {
+	    r = Math.ceil(r/2);
+	    if (get(i).equals(target))
+		return i;
+	    if (get(i).compareTo(target) < 0)
+		i += r/2;
+	    else
+		i -= r/2;
+	}
+	return -1;
     }
 
 }
