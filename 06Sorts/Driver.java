@@ -10,7 +10,7 @@ public class Driver {
     }
 
     public static void main(String[] args) {
-	int length = 10;
+	int length = 50000;
 
 	System.out.println("> Array length: " + length);
 
@@ -25,7 +25,7 @@ public class Driver {
 	    base[i] = new Integer(randy.nextInt(21));
 	}
 
-	System.out.println(Arrays.toString(base));
+	//System.out.println(Arrays.toString(base));
 
 	// Array Cloning
 	System.out.println("> Cloning array...");
@@ -72,7 +72,7 @@ public class Driver {
 	Sorts.insertion(insertion);
 	System.out.println((System.currentTimeMillis() - t) / 1000.0);
 
-	System.out.println(Arrays.toString(insertion));
+	//System.out.println(Arrays.toString(insertion));
 
 	checkIntegerArray(insertion, base);
     }
