@@ -2,7 +2,12 @@ import java.util.Arrays;
 
 public class Sorts {
     public static <T extends Comparable<T>> void bubble(T[] a) {
-
+	int n = a.length;
+	while (n > 0) {
+	    for (int i = 0; i < n; i++) {
+		
+	    }
+	}
     }
 
     public static <T extends Comparable<T>> void selection(T[] a) {
